@@ -1,0 +1,66 @@
+import type { Metadata, Viewport } from "next";
+import { GeistSans } from "geist/font/sans";
+import { GeistMono } from "geist/font/mono";
+import "./globals.css";
+import { cn } from "@/lib/utils";
+import { site } from "@/lib/site";
+
+export const metadata: Metadata = {
+  metadataBase: new URL(site.url),
+  title: {
+    default: `${site.name} — Operate like a CEO. Tasks, habits, calendar, and focus in one execution system.`,
+    template: `%s — ${site.name}`,
+  },
+  description: site.longDescription,
+  keywords: [
+    "focus app",
+    "productivity",
+    "discipline",
+    "habit tracker",
+    "screen time control",
+    "deep work",
+    "blackout mode",
+    "intentional living",
+    "TestFlight",
+  ],
+  authors: [{ name: "WakeApp" }],
+  creator: "WakeApp",
+  openGraph: {
+    type: "website",
+    title: `${site.name} — Stop drifting. Start acting intentionally.`,
+    description: site.longDescription,
+    url: site.url,
+    siteName: site.name,
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${site.name} — Stop drifting. Start acting intentionally.`,
+    description: site.shortDescription,
+  },
+  robots: { index: true, follow: true },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#0A0A0B",
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+  colorScheme: "dark",
+};
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <html
+      lang="en"
+      className={cn(GeistSans.variable, GeistMono.variable, "dark")}
+      suppressHydrationWarning
+    >
+      <body className="min-h-screen overflow-x-hidden">{children}</body>
+    </html>
+  );
+}

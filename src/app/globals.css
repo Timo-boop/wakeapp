@@ -1,0 +1,106 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    @apply scroll-smooth;
+    overflow-x: hidden;
+  }
+
+  body {
+    @apply bg-bg text-ink font-sans antialiased;
+    background-image:
+      radial-gradient(at 18% 12%, rgba(132, 124, 220, 0.06), transparent 45%),
+      radial-gradient(at 82% 78%, rgba(124, 156, 220, 0.04), transparent 50%);
+    background-attachment: fixed;
+  }
+
+  ::selection {
+    @apply bg-ink/15 text-ink;
+  }
+
+  :focus-visible {
+    @apply outline-none ring-2 ring-pearl/40 ring-offset-2 ring-offset-bg;
+  }
+}
+
+@layer components {
+  .container-narrow {
+    @apply mx-auto w-full max-w-5xl px-5 lg:px-8;
+  }
+  .container-wide {
+    @apply mx-auto w-full max-w-7xl px-5 lg:px-8;
+  }
+
+  .h-eyebrow {
+    @apply inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.22em] text-ink-dim font-mono;
+  }
+  .h-display {
+    @apply font-sans text-[clamp(2.75rem,7.5vw,6rem)] leading-[0.96] tracking-tight-4 font-bold text-ink;
+  }
+  .h-section {
+    @apply font-sans text-[clamp(2rem,4.8vw,3.75rem)] leading-[1.02] tracking-tight-3 font-bold text-ink;
+  }
+  .h-card {
+    @apply font-sans text-[22px] leading-tight tracking-tight-2 font-semibold text-ink;
+  }
+  .lead {
+    @apply text-[17px] leading-[1.55] text-ink-muted max-w-[60ch];
+  }
+
+  .card {
+    @apply relative overflow-hidden rounded-2xl border border-line bg-surface;
+    box-shadow:
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.04),
+      0 20px 40px -20px rgba(0, 0, 0, 0.4);
+  }
+
+  .hairline {
+    @apply h-px w-full bg-line;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .text-pretty {
+    text-wrap: pretty;
+  }
+
+  .mask-fade-x {
+    mask-image: linear-gradient(
+      90deg,
+      transparent 0%,
+      #000 8%,
+      #000 92%,
+      transparent 100%
+    );
+  }
+
+  .mask-fade-bottom {
+    mask-image: linear-gradient(180deg, #000 70%, transparent 100%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
