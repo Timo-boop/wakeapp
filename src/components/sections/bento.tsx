@@ -10,8 +10,8 @@ type Feature = {
   src: string;
   alt: string;
   span: string;
-  /** which part of the screenshot to favor when cropping inside the card */
-  focal?: "top" | "center" | "bottom";
+  /** "hero" cards get a bigger layout with phone on the right */
+  variant?: "hero" | "row";
 };
 
 const features: Feature[] = [
@@ -21,7 +21,7 @@ const features: Feature[] = [
     src: "/screenshots/dashboard-carbon.png",
     alt: "WakeApp Dashboard showing Wake Score, tasks, habits, schedule, and screen time",
     span: "lg:col-span-3 lg:row-span-2",
-    focal: "top",
+    variant: "hero",
   },
   {
     title: "Wake Score",
@@ -29,7 +29,7 @@ const features: Feature[] = [
     src: "/screenshots/control-center.png",
     alt: "Control Center showing Wake Score 40 and habit validation",
     span: "lg:col-span-3",
-    focal: "top",
+    variant: "row",
   },
   {
     title: "Tasks",
@@ -37,7 +37,7 @@ const features: Feature[] = [
     src: "/screenshots/tasks-history.png",
     alt: "Task history with priority tags",
     span: "lg:col-span-3",
-    focal: "top",
+    variant: "row",
   },
   {
     title: "Habits",
@@ -45,7 +45,7 @@ const features: Feature[] = [
     src: "/screenshots/habits.png",
     alt: "Weekly habit tracker showing practice habit with M T W T F S S row",
     span: "lg:col-span-2",
-    focal: "top",
+    variant: "row",
   },
   {
     title: "Schedule",
@@ -53,7 +53,7 @@ const features: Feature[] = [
     src: "/screenshots/schedule.png",
     alt: "Schedule view with Focus Opportunity and Week Overview",
     span: "lg:col-span-2",
-    focal: "top",
+    variant: "row",
   },
   {
     title: "Notes",
@@ -61,7 +61,7 @@ const features: Feature[] = [
     src: "/screenshots/notes.png",
     alt: "Notes interface with tagged note",
     span: "lg:col-span-2",
-    focal: "top",
+    variant: "row",
   },
 ];
 
@@ -105,7 +105,7 @@ export function Bento() {
           </motion.p>
         </div>
 
-        <div className="mt-16 grid gap-3 lg:grid-cols-6 auto-rows-[280px] lg:auto-rows-[300px]">
+        <div className="mt-16 grid gap-3 lg:grid-cols-6 lg:auto-rows-[300px]">
           {features.map((f, i) => (
             <FeatureCard key={f.title} feature={f} index={i} />
           ))}
@@ -116,7 +116,7 @@ export function Bento() {
 }
 
 function FeatureCard({ feature, index }: { feature: Feature; index: number }) {
-  const isBig = feature.span.includes("row-span-2");
+  const isHero = feature.variant === "hero";
   return (
     <motion.article
       initial={{ opacity: 0, y: 24 }}
@@ -130,38 +130,55 @@ function FeatureCard({ feature, index }: { feature: Feature; index: number }) {
       className={cn(
         "card group relative col-span-1 sm:col-span-2 row-span-1 overflow-hidden",
         "transition-all duration-500 hover:border-line-bright",
+        isHero
+          ? "flex flex-col"
+          : "flex flex-col sm:flex-row sm:items-stretch",
         feature.span,
       )}
     >
-      {/* Screenshot, top portion only */}
+      {/* Text */}
       <div
         className={cn(
-          "relative w-full overflow-hidden",
-          isBig ? "h-[58%]" : "h-[52%]",
+          "relative p-6 lg:p-7",
+          isHero ? "" : "sm:flex-1 sm:min-w-0 sm:flex sm:flex-col sm:justify-center",
         )}
       >
-        <Image
-          src={feature.src}
-          alt={feature.alt}
-          fill
-          sizes="(max-width: 768px) 100vw, 50vw"
-          className={cn(
-            "object-cover transition-transform duration-700 group-hover:scale-[1.02]",
-            feature.focal === "top" && "object-top",
-            feature.focal === "center" && "object-center",
-            feature.focal === "bottom" && "object-bottom",
-            !feature.focal && "object-top",
-          )}
-        />
-        {/* Soft bottom fade so text doesn't compete with the image */}
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-b from-transparent to-surface" />
-      </div>
-
-      <div className="relative p-6 lg:p-7">
         <h3 className="h-card text-[20px]">{feature.title}</h3>
-        <p className="mt-2 max-w-[42ch] text-[14px] leading-[1.55] text-ink-muted text-pretty">
+        <p
+          className={cn(
+            "mt-2 text-[14px] leading-[1.55] text-ink-muted text-pretty",
+            isHero ? "max-w-[46ch]" : "max-w-[34ch]",
+          )}
+        >
           {feature.body}
         </p>
+      </div>
+
+      {/* Full screenshot in a mini phone frame */}
+      <div
+        className={cn(
+          "relative",
+          isHero
+            ? "mt-2 flex-1 px-6 pb-6 lg:px-8 lg:pb-8"
+            : "shrink-0 self-end p-5 sm:self-stretch sm:flex sm:items-end sm:py-5 sm:pr-5 sm:pl-0",
+        )}
+      >
+        <div
+          className={cn(
+            "relative mx-auto aspect-[1206/2622] overflow-hidden rounded-[22px] border border-line/70 bg-black shadow-[0_18px_40px_-22px_rgba(0,0,0,0.7)]",
+            isHero
+              ? "h-full max-h-[420px] w-auto"
+              : "h-[210px] w-auto sm:h-[230px]",
+          )}
+        >
+          <Image
+            src={feature.src}
+            alt={feature.alt}
+            fill
+            sizes={isHero ? "(max-width: 1024px) 60vw, 360px" : "(max-width: 1024px) 40vw, 160px"}
+            className="object-contain transition-transform duration-700 group-hover:scale-[1.02]"
+          />
+        </div>
       </div>
     </motion.article>
   );

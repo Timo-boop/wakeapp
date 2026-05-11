@@ -46,7 +46,7 @@ export function CTA() {
         className="pointer-events-none absolute inset-0 -z-10"
       >
         <div className="absolute inset-0 bg-gradient-to-b from-bg to-black" />
-        <div className="absolute left-1/2 top-1/2 h-[700px] w-[900px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-glow-violet blur-[150px]" />
+        <div className="absolute left-1/2 top-1/2 h-[700px] w-[900px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-glow-pearl blur-[150px]" />
       </div>
 
       <div className="container-narrow">

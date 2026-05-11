@@ -17,7 +17,7 @@ export function Hero() {
         className="pointer-events-none absolute inset-0 -z-10"
       >
         <div className="absolute inset-0 bg-mesh-carbon" />
-        <div className="absolute left-1/2 top-1/3 h-[640px] w-[640px] -translate-x-1/2 rounded-full bg-glow-violet blur-[120px]" />
+        <div className="absolute left-1/2 top-1/4 h-[640px] w-[640px] -translate-x-1/2 rounded-full bg-glow-pearl blur-[140px]" />
       </div>
 
       <div className="container-wide">

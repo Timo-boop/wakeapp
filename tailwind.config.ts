@@ -40,8 +40,8 @@ const config: Config = {
           deep: "#C9C1AE",
         },
         glow: {
-          violet: "rgba(132, 124, 220, 0.12)",
-          blue: "rgba(124, 156, 220, 0.10)",
+          pearl: "rgba(244, 239, 228, 0.06)",
+          mist: "rgba(255, 255, 255, 0.04)",
         },
       },
       fontFamily: {
@@ -55,7 +55,7 @@ const config: Config = {
       },
       backgroundImage: {
         "mesh-carbon":
-          "radial-gradient(at 18% 12%, rgba(132,124,220,0.10), transparent 45%), radial-gradient(at 82% 78%, rgba(124,156,220,0.06), transparent 50%), radial-gradient(at 50% 50%, rgba(255,255,255,0.015), transparent 60%)",
+          "radial-gradient(at 50% 0%, rgba(255,255,255,0.04), transparent 55%), radial-gradient(at 18% 78%, rgba(244,239,228,0.025), transparent 50%), radial-gradient(at 82% 22%, rgba(255,255,255,0.02), transparent 55%)",
         "pearl-gradient":
           "linear-gradient(180deg, #F4EFE4 0%, #E8E1D2 55%, #C9C1AE 100%)",
       },

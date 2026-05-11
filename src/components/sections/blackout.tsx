@@ -27,18 +27,18 @@ export function Blackout() {
             transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
             className="relative mx-auto w-full max-w-[360px]"
           >
-            <div className="relative aspect-[9/19] overflow-hidden rounded-[42px] border border-line bg-black shadow-elevated">
+            <div className="relative aspect-[1206/2622] overflow-hidden rounded-[42px] border border-line bg-black shadow-elevated">
               <Image
                 src="/screenshots/blackout.png"
                 alt="Blackout Active — 14:53 remaining, all apps and websites locked"
                 fill
                 sizes="(max-width: 1024px) 100vw, 360px"
-                className="object-cover object-top"
+                className="object-contain"
               />
             </div>
             <div
               aria-hidden="true"
-              className="pointer-events-none absolute -inset-6 -z-10 rounded-[60px] bg-glow-violet blur-3xl"
+              className="pointer-events-none absolute -inset-6 -z-10 rounded-[60px] bg-glow-pearl blur-3xl"
             />
           </motion.div>
 
@@ -60,7 +60,7 @@ export function Blackout() {
               transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
               className="h-section text-balance"
             >
-              CEO mode. No exits.
+              Blackout mode. No exits.
             </motion.h2>
 
             <motion.p

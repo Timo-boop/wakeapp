@@ -80,18 +80,18 @@ export function ScreenTime() {
             transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
             className="relative mx-auto w-full max-w-[340px]"
           >
-            <div className="relative aspect-[9/19] overflow-hidden rounded-[42px] border border-line bg-black shadow-elevated">
+            <div className="relative aspect-[1206/2622] overflow-hidden rounded-[42px] border border-line bg-black shadow-elevated">
               <Image
                 src="/screenshots/screen-time.png"
                 alt="Screen Time Control — blocked apps, blocked websites, NSFW shield, pause"
                 fill
                 sizes="(max-width: 1024px) 100vw, 340px"
-                className="object-cover object-top"
+                className="object-contain"
               />
             </div>
             <div
               aria-hidden="true"
-              className="pointer-events-none absolute -inset-6 -z-10 rounded-[60px] bg-glow-blue blur-3xl"
+              className="pointer-events-none absolute -inset-6 -z-10 rounded-[60px] bg-glow-mist blur-3xl"
             />
           </motion.div>
         </div>

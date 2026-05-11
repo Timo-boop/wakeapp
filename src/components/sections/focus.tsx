@@ -22,7 +22,7 @@ export function Focus() {
         className="pointer-events-none absolute inset-0 -z-10"
       >
         <div className="absolute inset-0 bg-gradient-to-b from-bg via-black to-bg" />
-        <div className="absolute left-1/2 top-1/2 h-[600px] w-[800px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-glow-violet blur-[140px]" />
+        <div className="absolute left-1/2 top-1/2 h-[600px] w-[800px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-glow-mist blur-[140px]" />
       </div>
 
       <div className="container-wide">
@@ -120,7 +120,7 @@ function FocusShot({
 }) {
   return (
     <div
-      className={`relative aspect-[9/19] overflow-hidden rounded-[28px] border border-line bg-black shadow-elevated ${
+      className={`relative aspect-[1206/2622] overflow-hidden rounded-[28px] border border-line bg-black shadow-elevated ${
         offset === "up" ? "lg:-translate-y-6" : "lg:translate-y-6"
       }`}
     >
@@ -129,7 +129,7 @@ function FocusShot({
         alt={alt}
         fill
         sizes="(max-width: 1024px) 50vw, 320px"
-        className="object-cover object-top"
+        className="object-contain"
       />
     </div>
   );

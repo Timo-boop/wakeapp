@@ -8,7 +8,7 @@ import { site } from "@/lib/site";
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: `${site.name} — Operate like a CEO. Tasks, habits, calendar, and focus in one execution system.`,
+    default: `${site.name} — Stop drifting. Start acting intentionally. Tasks, habits, calendar, focus, and Blackout mode in one execution system.`,
     template: `%s — ${site.name}`,
   },
   description: site.longDescription,

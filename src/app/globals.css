@@ -21,8 +21,8 @@
   body {
     @apply bg-bg text-ink font-sans antialiased;
     background-image:
-      radial-gradient(at 18% 12%, rgba(132, 124, 220, 0.06), transparent 45%),
-      radial-gradient(at 82% 78%, rgba(124, 156, 220, 0.04), transparent 50%);
+      radial-gradient(at 50% 0%, rgba(255, 255, 255, 0.035), transparent 55%),
+      radial-gradient(at 18% 100%, rgba(244, 239, 228, 0.018), transparent 50%);
     background-attachment: fixed;
   }
 

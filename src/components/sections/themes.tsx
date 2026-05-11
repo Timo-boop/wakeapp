@@ -117,8 +117,8 @@ export function Themes() {
         <div className="mt-14 lg:mt-16 grid gap-10 lg:grid-cols-[1.4fr_1fr] lg:items-start">
           {/* Real screenshot preview */}
           <div className="order-2 lg:order-1">
-            <div className="relative rounded-3xl border border-line bg-bg-elevated p-3 sm:p-4 shadow-elevated">
-              <div className="relative aspect-[9/16] sm:aspect-[10/16] overflow-hidden rounded-2xl bg-black">
+            <div className="relative mx-auto w-full max-w-[360px] rounded-[42px] border border-line bg-bg-elevated p-2.5 shadow-elevated">
+              <div className="relative aspect-[1206/2622] overflow-hidden rounded-[34px] border border-line/60 bg-black">
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={theme.key}
@@ -132,8 +132,8 @@ export function Themes() {
                       src={theme.src}
                       alt={`${theme.name} theme — WakeApp dashboard`}
                       fill
-                      sizes="(max-width: 1024px) 100vw, 60vw"
-                      className="object-cover object-top"
+                      sizes="(max-width: 1024px) 100vw, 360px"
+                      className="object-contain"
                     />
                   </motion.div>
                 </AnimatePresence>

@@ -29,20 +29,20 @@ export function ScreenFrame({ src, alt, className, size = "md", priority }: Prop
           <Image
             src={src}
             alt={alt}
-            width={1170}
-            height={2532}
+            width={1206}
+            height={2622}
             priority={priority}
             className="block h-auto w-full"
           />
         </div>
       </div>
-      {/* ambient glow */}
+      {/* ambient glow — neutral pearl */}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 -z-10 blur-3xl"
         style={{
           background:
-            "radial-gradient(circle at 50% 50%, rgba(132,124,220,0.18), transparent 60%)",
+            "radial-gradient(circle at 50% 50%, rgba(244,239,228,0.08), transparent 60%)",
         }}
       />
     </div>

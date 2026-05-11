@@ -89,13 +89,13 @@ export function Ranks() {
             transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
             className="relative mx-auto w-full max-w-[340px]"
           >
-            <div className="relative aspect-[9/19] overflow-hidden rounded-[42px] border border-line bg-black shadow-elevated">
+            <div className="relative aspect-[1206/2622] overflow-hidden rounded-[42px] border border-line bg-black shadow-elevated">
               <Image
                 src="/screenshots/dashboard-rank.png"
                 alt="Dashboard with Bronze rank pill visible at the top"
                 fill
                 sizes="(max-width: 1024px) 100vw, 340px"
-                className="object-cover object-top"
+                className="object-contain"
               />
             </div>
           </motion.div>
