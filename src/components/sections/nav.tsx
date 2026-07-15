@@ -59,7 +59,7 @@ export function Nav() {
         </nav>
 
         <div className="hidden md:flex items-center gap-2">
-          <Button href="#invite" size="sm" variant="primary">
+          <Button href="/waitlist" size="sm" variant="primary">
             Request invite
           </Button>
         </div>
@@ -96,7 +96,7 @@ export function Nav() {
             ))}
             <div className="mt-2 border-t border-line p-2">
               <Button
-                href="#invite"
+                href="/waitlist"
                 size="md"
                 variant="primary"
                 className="w-full"

@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { AppleLogo } from "@/components/icons";
 import { ScreenFrame } from "@/components/screen-frame";
 
 export function Hero() {
@@ -65,19 +64,16 @@ export function Hero() {
           transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.4 }}
           className="mt-9 flex flex-col sm:flex-row items-center justify-center gap-3"
         >
-          <Button href="#invite" size="lg" variant="primary" className="w-full sm:w-auto">
+          <Button href="/waitlist" size="lg" variant="primary" className="w-full sm:w-auto">
             Request TestFlight invite
           </Button>
           <Button
-            href="https://apps.apple.com/app/wakeapp"
-            target="_blank"
-            rel="noreferrer"
+            href="/waitlist"
             size="lg"
             variant="secondary"
             className="w-full sm:w-auto"
           >
-            <AppleLogo className="h-[18px] w-[18px]" />
-            <span>Download on the App Store</span>
+            Join the waitlist
           </Button>
         </motion.div>
 
