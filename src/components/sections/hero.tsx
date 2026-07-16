@@ -20,30 +20,14 @@ export function Hero() {
       </div>
 
       <div className="container-wide">
-        <motion.div
-          initial={{ opacity: 0, y: -8 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className="mx-auto flex w-fit items-center gap-2 rounded-full border border-line bg-surface/60 backdrop-blur-md px-3 py-1.5"
-        >
-          <span className="relative grid place-items-center">
-            <span className="h-1.5 w-1.5 rounded-full bg-pearl" />
-            <span className="absolute h-1.5 w-1.5 animate-ping rounded-full bg-pearl/60" />
-          </span>
-          <span className="text-[12px] tracking-tight text-ink-muted">
-            Private beta —{" "}
-            <span className="text-ink">TestFlight invitations open</span>
-          </span>
-        </motion.div>
-
         <motion.h1
           initial={{ opacity: 0, y: 28 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
-          className="mx-auto mt-7 max-w-[18ch] text-center h-display text-balance"
+          className="mx-auto max-w-[18ch] text-center h-display text-balance"
         >
-          Stop drifting.{" "}
-          <span className="text-ink-muted">Start acting intentionally.</span>
+          One app.{" "}
+          <span className="text-ink-muted">Control everything.</span>
         </motion.h1>
 
         <motion.p
@@ -64,14 +48,11 @@ export function Hero() {
           transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.4 }}
           className="mt-9 flex flex-col sm:flex-row items-center justify-center gap-3"
         >
-          <Button href="/waitlist" size="lg" variant="primary" className="w-full sm:w-auto">
-            Request TestFlight invite
-          </Button>
           <Button
             href="/waitlist"
             size="lg"
-            variant="secondary"
-            className="w-full sm:w-auto"
+            variant="primary"
+            className="w-full sm:w-auto h-16 px-10 text-lg"
           >
             Join the waitlist
           </Button>

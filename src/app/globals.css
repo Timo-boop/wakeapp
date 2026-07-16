@@ -69,6 +69,34 @@
   .hairline {
     @apply h-px w-full bg-line;
   }
+
+  .prose-legal h1 {
+    @apply font-sans text-[clamp(2rem,4.5vw,3rem)] leading-[1.05] tracking-tight-3 font-bold text-ink mb-4;
+  }
+  .prose-legal .prose-legal-meta {
+    @apply text-[13px] text-ink-dim font-mono mb-10;
+  }
+  .prose-legal h2 {
+    @apply text-[20px] font-semibold tracking-tight-2 text-ink mt-10 mb-3;
+  }
+  .prose-legal p {
+    @apply text-[15px] leading-[1.65] text-ink-muted mb-4;
+  }
+  .prose-legal ul {
+    @apply list-disc pl-5 space-y-1.5 text-[15px] leading-[1.65] text-ink-muted mb-4;
+  }
+  .prose-legal li strong {
+    @apply text-ink font-semibold;
+  }
+  .prose-legal strong {
+    @apply text-ink font-semibold;
+  }
+  .prose-legal a {
+    @apply text-ink underline underline-offset-2 decoration-line-bright hover:text-ink-muted;
+  }
+  .prose-legal hr {
+    @apply my-10 border-line;
+  }
 }
 
 @layer utilities {

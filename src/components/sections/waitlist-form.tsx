@@ -1,15 +1,21 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useEffect, useState, type FormEvent } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Check } from "lucide-react";
 
 export function WaitlistForm() {
   const [email, setEmail] = useState("");
   const [company, setCompany] = useState(""); // honeypot, kept empty by real users
+  const [source, setSource] = useState<string | null>(null);
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">(
     "idle",
   );
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    setSource(params.get("ref") ?? params.get("utm_source"));
+  }, []);
 
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -22,7 +28,7 @@ export function WaitlistForm() {
       const res = await fetch("/api/waitlist", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, company }),
+        body: JSON.stringify({ email, company, source }),
       });
       setStatus(res.ok ? "success" : "error");
     } catch {
@@ -37,7 +43,7 @@ export function WaitlistForm() {
           <Check className="h-3.5 w-3.5" strokeWidth={3} />
         </span>
         <p className="text-[15px] text-ink">
-          You&apos;re on the list. Watch your inbox.
+          You&apos;re in. We&apos;ll email you the moment WakeApp goes live.
         </p>
       </div>
     );
@@ -88,6 +94,10 @@ export function WaitlistForm() {
           <ArrowRight className="h-4 w-4" />
         </Button>
       </form>
+
+      <p className="mt-4 text-center text-[13px] text-ink-dim">
+        Be first to get it at launch. No spam, ever.
+      </p>
 
       {status === "error" && (
         <p className="mt-3 text-center text-[13px] text-ink-muted">

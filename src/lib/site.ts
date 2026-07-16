@@ -1,13 +1,14 @@
 export const site = {
   name: "WakeApp",
-  domain: "wakeapp.app",
-  url: "https://wakeapp.app",
+  domain: "the-wakeapp.com",
+  url: "https://the-wakeapp.com",
   shortDescription:
     "A personal execution system for attention, discipline, and focus.",
   longDescription:
     "Tasks, habits, calendar, focus, and screen time control — unified into one calm environment. Built for the people who refuse to drift.",
   appStore: "https://apps.apple.com/app/wakeapp",
-  testFlight: "mailto:invite@wakeapp.app?subject=TestFlight%20invite%20request",
+  contactEmail: "contact@the-wakeapp.com",
+  testFlight: "mailto:contact@the-wakeapp.com?subject=TestFlight%20invite%20request",
   social: {
     twitter: "https://x.com/wakeapp",
     instagram: "https://instagram.com/wakeapp",

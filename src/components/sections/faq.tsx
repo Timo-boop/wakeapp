@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Plus, Minus } from "lucide-react";
+import { site } from "@/lib/site";
 
 const items = [
   {
@@ -69,10 +70,10 @@ export function FAQ() {
             <p className="lead mt-6">
               The honest answers. If something&apos;s missing, reach out at{" "}
               <a
-                href="mailto:hello@wakeapp.app"
+                href={`mailto:${site.contactEmail}`}
                 className="text-ink underline-offset-4 hover:underline"
               >
-                hello@wakeapp.app
+                {site.contactEmail}
               </a>
               .
             </p>

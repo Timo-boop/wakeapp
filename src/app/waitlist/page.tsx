@@ -1,14 +1,20 @@
 import type { Metadata } from "next";
+import { Ban, Timer, Trophy } from "lucide-react";
 import { Nav } from "@/components/sections/nav";
 import { Footer } from "@/components/sections/footer";
 import { WaitlistForm } from "@/components/sections/waitlist-form";
-import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Join the waitlist",
   description:
-    "WakeApp isn't live on the App Store yet. Join the waitlist and we'll send a TestFlight invite as soon as a spot opens up.",
+    "WakeApp blocks the apps that steal your time, runs deep-focus sessions, and turns discipline into a game. Launching soon on iPhone.",
 };
+
+const benefits = [
+  { icon: Ban, label: "Block distracting apps" },
+  { icon: Timer, label: "Deep-focus sessions" },
+  { icon: Trophy, label: "Discipline, gamified." },
+];
 
 export default function WaitlistPage() {
   return (
@@ -28,25 +34,32 @@ export default function WaitlistPage() {
           </div>
 
           <div className="container-narrow">
-            <p className="h-eyebrow justify-center text-center mb-7">
-              <span className="h-px w-6 bg-ink-dim" /> Private beta · TestFlight
-            </p>
-
             <h1 className="text-center font-sans text-[clamp(2.25rem,5.5vw,4.5rem)] leading-[0.98] tracking-tight-3 font-bold text-ink text-balance">
-              Join the waitlist
+              Take back your focus.
             </h1>
 
             <p className="mx-auto mt-7 max-w-[50ch] text-center text-[17px] leading-[1.55] text-ink-muted text-pretty">
-              {site.name} isn&apos;t on the App Store yet. Leave your email and
-              we&apos;ll send a TestFlight invite as soon as a spot opens up —
-              usually within a few days.
+              WakeApp blocks the apps that steal your time, runs deep-focus
+              sessions, and turns discipline into a game. Launching soon on
+              iPhone.
             </p>
 
             <div className="mx-auto mt-10 max-w-[520px]">
               <WaitlistForm />
-              <p className="mt-6 text-center text-[12px] text-ink-dim font-mono tracking-wide">
-                iOS · iPadOS · Free during beta · No credit card
-              </p>
+            </div>
+
+            <div className="mx-auto mt-16 flex max-w-[560px] flex-col gap-4 sm:flex-row sm:justify-center sm:gap-8">
+              {benefits.map(({ icon: Icon, label }) => (
+                <div
+                  key={label}
+                  className="flex items-center justify-center gap-2.5 sm:flex-col sm:gap-3"
+                >
+                  <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full border border-line bg-surface/60 text-ink-muted">
+                    <Icon className="h-4 w-4" />
+                  </span>
+                  <span className="text-[14px] text-ink-muted">{label}</span>
+                </div>
+              ))}
             </div>
           </div>
         </section>

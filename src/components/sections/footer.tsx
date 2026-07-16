@@ -12,13 +12,14 @@ const productLinks = [
 const companyLinks = [
   { label: "Manifesto", href: "#manifesto" },
   { label: "FAQ", href: "#faq" },
-  { label: "Contact", href: "mailto:hello@wakeapp.app" },
 ];
 
 const legalLinks = [
   { label: "Privacy", href: "/privacy/" },
   { label: "Terms", href: "/terms/" },
-  { label: "Legal", href: "/legal/" },
+  { label: "Account Deletion", href: "/account-deletion/" },
+  { label: "Support", href: "/support/" },
+  { label: "Contact", href: `mailto:${site.contactEmail}` },
 ];
 
 export function Footer() {

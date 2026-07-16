@@ -28,12 +28,14 @@ export async function onRequest(context) {
     return json({ error: "Invalid email address" }, 400);
   }
 
+  const source = body.source ? String(body.source).slice(0, 100) : null;
+
   const key = `email:${email}`;
   const existing = await env.WAITLIST.get(key);
   if (!existing) {
     await env.WAITLIST.put(
       key,
-      JSON.stringify({ email, joinedAt: new Date().toISOString() }),
+      JSON.stringify({ email, source, joinedAt: new Date().toISOString() }),
     );
   }
 
