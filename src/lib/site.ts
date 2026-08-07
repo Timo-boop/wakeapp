@@ -16,9 +16,9 @@ export const site = {
 } as const;
 
 export const navLinks = [
-  { label: "Features", href: "#features" },
-  { label: "Themes", href: "#themes" },
-  { label: "Focus", href: "#focus" },
-  { label: "Blackout", href: "#blackout" },
-  { label: "FAQ", href: "#faq" },
+  { label: "Features", href: "/#features" },
+  { label: "Themes", href: "/#themes" },
+  { label: "Focus", href: "/#focus" },
+  { label: "Blackout", href: "/#blackout" },
+  { label: "FAQ", href: "/#faq" },
 ] as const;

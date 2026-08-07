@@ -36,7 +36,7 @@ export function Nav() {
     >
       <div className="container-wide flex h-16 items-center justify-between">
         <a
-          href="#top"
+          href="/"
           className="group flex items-center gap-2.5 transition-opacity hover:opacity-80"
           aria-label={`${site.name} home`}
         >

@@ -2,16 +2,16 @@ import { WakeMark } from "@/components/icons";
 import { site } from "@/lib/site";
 
 const productLinks = [
-  { label: "Features", href: "#features" },
-  { label: "Themes", href: "#themes" },
-  { label: "Focus", href: "#focus" },
-  { label: "Blackout", href: "#blackout" },
-  { label: "Ranks", href: "#ranks" },
+  { label: "Features", href: "/#features" },
+  { label: "Themes", href: "/#themes" },
+  { label: "Focus", href: "/#focus" },
+  { label: "Blackout", href: "/#blackout" },
+  { label: "Ranks", href: "/#ranks" },
 ];
 
 const companyLinks = [
-  { label: "Manifesto", href: "#manifesto" },
-  { label: "FAQ", href: "#faq" },
+  { label: "Manifesto", href: "/#manifesto" },
+  { label: "FAQ", href: "/#faq" },
 ];
 
 const legalLinks = [
@@ -28,7 +28,7 @@ export function Footer() {
       <div className="container-wide py-16 lg:py-20">
         <div className="grid gap-12 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
           <div>
-            <a href="#top" className="inline-flex items-center gap-2.5">
+            <a href="/" className="inline-flex items-center gap-2.5">
               <WakeMark className="h-7 w-7" />
               <span className="font-sans text-[17px] font-bold tracking-tight-2 text-ink">
                 {site.name}
