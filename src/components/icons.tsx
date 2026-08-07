@@ -14,32 +14,15 @@ export function AppleLogo({ className }: { className?: string }) {
 }
 
 // Stylized brand mark matching the in-app icon:
-// a black rounded square with an upward arrow.
+// The real WakeApp app icon (Control Center).
 export function WakeMark({ className }: { className?: string }) {
   return (
-    <svg
-      viewBox="0 0 32 32"
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      src="/app-icon.png"
+      alt=""
       aria-hidden="true"
-      className={cn("h-7 w-7", className)}
-    >
-      <rect
-        x="1"
-        y="1"
-        width="30"
-        height="30"
-        rx="8"
-        fill="#0E0E10"
-        stroke="rgba(255,255,255,0.10)"
-        strokeWidth="1"
-      />
-      <path
-        d="M16 9 L16 23 M16 9 L11 14 M16 9 L21 14"
-        stroke="#F4F4F5"
-        strokeWidth="2.2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        fill="none"
-      />
-    </svg>
+      className={cn("h-7 w-7 rounded-[7px]", className)}
+    />
   );
 }
