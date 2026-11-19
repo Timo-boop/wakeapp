@@ -5,6 +5,8 @@ import { ArrowRight, Check, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { WakeMark } from "@/components/icons";
 import { site } from "@/lib/site";
+import { hasEmailShape, suggestEmailFix } from "@/lib/email-typo";
+import { domainReceivesMail } from "@/lib/email-domain";
 import {
   claimCode,
   fetchCodeInfo,
@@ -179,17 +181,21 @@ function ClaimForm({ code, onClaimed }: { code: string; onClaimed: (email: strin
   const [email, setEmail] = useState("");
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  // A likely typo in the domain, held until the student picks one of the two.
+  const [suggestion, setSuggestion] = useState<{ typed: string; fix: string } | null>(null);
 
-  async function onSubmit(e: FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    const address = email.trim().toLowerCase();
-    if (!/^\S+@\S+\.\S+$/.test(address)) {
-      setError("Cette adresse email n'est pas valide.");
-      return;
-    }
+  async function claim(address: string) {
+    setSuggestion(null);
     setBusy(true);
     setError(null);
     try {
+      // Kept even when the student chose to keep their address: "gmail.con"
+      // passes the shape check but no account could ever have it.
+      if ((await domainReceivesMail(address)) === false) {
+        const domain = address.slice(address.lastIndexOf("@") + 1);
+        setError(`Le domaine «${NBSP}${domain}${NBSP}» n'existe pas. Vérifie ton adresse.`);
+        return;
+      }
       const result = await claimCode(code, address);
       if (result.status === "ok") onClaimed(address);
       else setError(claimErrorText(result.status));
@@ -198,6 +204,23 @@ function ClaimForm({ code, onClaimed }: { code: string; onClaimed: (email: strin
     } finally {
       setBusy(false);
     }
+  }
+
+  async function onSubmit(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const address = email.trim().toLowerCase();
+    if (!hasEmailShape(address)) {
+      setError("Cette adresse email n'est pas valide. Elle doit ressembler à prenom@exemple.fr.");
+      return;
+    }
+    // The access only reaches an account created with this exact address: a
+    // "gmail.con" would never meet one.
+    const fix = suggestEmailFix(address);
+    if (fix) {
+      setSuggestion({ typed: address, fix });
+      return;
+    }
+    await claim(address);
   }
 
   return (
@@ -222,6 +245,7 @@ function ClaimForm({ code, onClaimed }: { code: string; onClaimed: (email: strin
           onChange={(e) => {
             setEmail(e.target.value);
             setError(null);
+            setSuggestion(null);
           }}
           placeholder="prenom@exemple.fr"
           disabled={busy}
@@ -238,6 +262,35 @@ function ClaimForm({ code, onClaimed }: { code: string; onClaimed: (email: strin
           Activer mon accès
         </Button>
       </FieldRow>
+      {suggestion && (
+        <div role="alert" className="mt-3 rounded-xl border border-line-bright bg-surface-raised/60 p-4">
+          <p className="text-[15px] leading-[1.55] text-ink">
+            Tu voulais dire <span className="font-semibold">{suggestion.fix}</span>{NBSP}?
+          </p>
+          <div className="mt-3 flex flex-col gap-2 sm:flex-row">
+            <Button
+              type="button"
+              size="md"
+              disabled={busy}
+              onClick={() => {
+                setEmail(suggestion.fix);
+                void claim(suggestion.fix);
+              }}
+            >
+              Oui, corriger
+            </Button>
+            <Button
+              type="button"
+              variant="secondary"
+              size="md"
+              disabled={busy}
+              onClick={() => void claim(suggestion.typed)}
+            >
+              Non, garder mon adresse
+            </Button>
+          </div>
+        </div>
+      )}
       {error && (
         <p id="access-error" role="alert" className="mt-3 text-[14px] leading-[1.55] text-ink">
           {error}
