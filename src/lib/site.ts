@@ -6,7 +6,7 @@ export const site = {
     "A personal execution system for attention, discipline, and focus.",
   longDescription:
     "Tasks, habits, calendar, focus, and screen time control — unified into one calm environment. Built for the people who refuse to drift.",
-  appStore: "https://apps.apple.com/app/wakeapp",
+  appStore: "https://apps.apple.com/app/id6760942950",
   contactEmail: "contact@the-wakeapp.com",
   testFlight: "mailto:contact@the-wakeapp.com?subject=TestFlight%20invite%20request",
   social: {
