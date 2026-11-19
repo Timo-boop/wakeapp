@@ -21,7 +21,6 @@ export const metadata: Metadata = {
     "deep work",
     "blackout mode",
     "intentional living",
-    "TestFlight",
   ],
   authors: [{ name: "WakeApp" }],
   creator: "WakeApp",
