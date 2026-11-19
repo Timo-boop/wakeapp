@@ -32,6 +32,15 @@ const SINGLE_EXTENSION: Record<string, string> = {
   laposte: "laposte.net",
 };
 
+// The shape of an address the server also accepts: letters, digits and . _ % + -
+// before the @, dot-separated labels after it, and an extension of 2 letters or
+// more. Lowercase only: the page lowercases what the student types.
+const EMAIL_SHAPE = /^[a-z0-9._%+-]+@[a-z0-9-]+(\.[a-z0-9-]+)*\.[a-z]{2,}$/;
+
+export function hasEmailShape(email: string): boolean {
+  return EMAIL_SHAPE.test(email) && !email.includes("..") && email.length <= 254;
+}
+
 /** The address with its domain corrected, or null when nothing looks off. */
 export function suggestEmailFix(email: string): string | null {
   const at = email.lastIndexOf("@");

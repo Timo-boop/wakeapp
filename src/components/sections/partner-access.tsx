@@ -5,7 +5,8 @@ import { ArrowRight, Check, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { WakeMark } from "@/components/icons";
 import { site } from "@/lib/site";
-import { suggestEmailFix } from "@/lib/email-typo";
+import { hasEmailShape, suggestEmailFix } from "@/lib/email-typo";
+import { domainReceivesMail } from "@/lib/email-domain";
 import {
   claimCode,
   fetchCodeInfo,
@@ -188,6 +189,13 @@ function ClaimForm({ code, onClaimed }: { code: string; onClaimed: (email: strin
     setBusy(true);
     setError(null);
     try {
+      // Kept even when the student chose to keep their address: "gmail.con"
+      // passes the shape check but no account could ever have it.
+      if ((await domainReceivesMail(address)) === false) {
+        const domain = address.slice(address.lastIndexOf("@") + 1);
+        setError(`Le domaine «${NBSP}${domain}${NBSP}» n'existe pas. Vérifie ton adresse.`);
+        return;
+      }
       const result = await claimCode(code, address);
       if (result.status === "ok") onClaimed(address);
       else setError(claimErrorText(result.status));
@@ -201,8 +209,8 @@ function ClaimForm({ code, onClaimed }: { code: string; onClaimed: (email: strin
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const address = email.trim().toLowerCase();
-    if (!/^\S+@\S+\.\S+$/.test(address)) {
-      setError("Cette adresse email n'est pas valide.");
+    if (!hasEmailShape(address)) {
+      setError("Cette adresse email n'est pas valide. Elle doit ressembler à prenom@exemple.fr.");
       return;
     }
     // The access only reaches an account created with this exact address: a
